@@ -20,4 +20,12 @@ Assignment 1
 Assignment 2
 ------------
 
-TBA
+* Make PONG!
+* You do not need to keep score (we have not learned text output yet)
+* You must detect player wins
+* Use images or basic shapes
+  * Basic shapes, just like original
+* Can use keyboard, mouse, or joystick
+  * Keyboard functionality implemented (joystick soon)
+* Notes:
+  * Currently written without separate compilation
