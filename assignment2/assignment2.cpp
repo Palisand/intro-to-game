@@ -55,7 +55,7 @@ public:
         };
         glVertexPointer(2, GL_FLOAT, 0, quad);
         glEnableClientState(GL_VERTEX_ARRAY);
-
+        
         GLfloat quadUVs[] = {0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0};
         glTexCoordPointer(2, GL_FLOAT, 0, quadUVs);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -86,7 +86,7 @@ public:
     
     float dir_x;
     float dir_y;
-
+    
 };
 
 //global vars of death
@@ -126,7 +126,7 @@ void SetValues(bool right_won = true) {
 
 bool ProcessEvents() {
 	SDL_Event event;
-
+    
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
             return false;
@@ -159,13 +159,13 @@ bool ProcessEvents() {
         ((ball.y - ball.height * 0.5) < (paddle_right.y + paddle_right.height * 0.5))) {
         ball.x = (paddle_right.x - paddle_right.width * 0.5) - (ball.width * 0.5);
         ball.dir_x = -ball.dir_x;
-        float rebound_angle = (ball.y + paddle_right.y) / (paddle_right.height * 0.5);
-        ball.dir_y = atan(rebound_angle) * ball.dir_x;
+        float speed = (ball.y - paddle_right.y) / (paddle_right.height * 0.5);
+        ball.dir_y = speed;
         screen_red = float(rand() % 10) / 10;
         screen_green = float(rand() % 10) / 10;
         screen_blue = float(rand() % 10) / 10;
     }
-
+    
     //ball collide with left paddle
     if (((ball.x - ball.width * 0.5) < (paddle_left.x + paddle_left.width * 0.5)) &&
         ((ball.x - ball.width * 0.5) > (paddle_left.x)) &&
@@ -173,8 +173,8 @@ bool ProcessEvents() {
         ((ball.y - ball.height * 0.5) < (paddle_left.y + paddle_left.height * 0.5))) {
         ball.x = (paddle_left.x + paddle_left.width * 0.5) + (ball.width * 0.5);
         ball.dir_x = -ball.dir_x;
-        float rebound_angle = (ball.y - paddle_left.y) / (paddle_left.height * 0.5);
-        ball.dir_y = atan(rebound_angle) * ball.dir_x;
+        float speed = (ball.y - paddle_left.y) / (paddle_left.height * 0.5);
+        ball.dir_y = speed;
         screen_red = float(rand() % 10) / 10;
         screen_green = float(rand() % 10) / 10;
         screen_blue = float(rand() % 10) / 10;
