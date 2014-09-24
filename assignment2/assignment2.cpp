@@ -9,12 +9,23 @@
 #include <SDL_opengl.h>
 #include <SDL_image.h>
 
+#include "entity.h"
+using namespace GameObj;
+
 #define PI 3.14159265
 
 SDL_Window* displayWindow;
 
+//global vars of death -- should change!!!
+Entity ball, paddle_left, paddle_right;
+Entity top_bumper, bottom_bumper, net;
+float screen_red = 0.0f;
+float screen_blue = 0.0f;
+float screen_green = 0.0f;
+bool screen_fade = false;
+const Uint8* keys = SDL_GetKeyboardState(nullptr);
+
 GLuint LoadTexture(const char* image_path, GLenum image_format = GL_BGRA) {
-    
     SDL_Surface *surface = IMG_Load(image_path);
     
     GLuint textureID;
@@ -30,73 +41,6 @@ GLuint LoadTexture(const char* image_path, GLenum image_format = GL_BGRA) {
     
     return textureID;
 }
-
-class Entity { //put in header (entity.h, entity.cpp)
-    
-public:
-    
-    Entity() : x_scale(1), y_scale(1) {}
-    
-    void Draw() {
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glTranslatef(x, y, 0.0);
-        glRotatef(angle, 0.0, 0.0, 1.0);
-        glScalef(x_scale, y_scale, 0.0);
-        
-        GLfloat quad[] = {
-            -width * 0.5f, height * 0.5f,
-            -width * 0.5f, -height * 0.5f,
-            width * 0.5f, -height * 0.5f,
-            width * 0.5f, height * 0.5f
-        };
-        glVertexPointer(2, GL_FLOAT, 0, quad);
-        glEnableClientState(GL_VERTEX_ARRAY);
-        
-        GLfloat quadUVs[] = {0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0};
-        glTexCoordPointer(2, GL_FLOAT, 0, quadUVs);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
-        glDrawArrays(GL_QUADS, 0, 4);
-        glDisable(GL_TEXTURE_2D);
-    }
-    
-    void SetSize(float height, float width) {
-        this->height = height;
-        this->width = width;
-    }
-    
-    float x;
-    float y;
-    float x_scale;
-    float y_scale;
-    float angle;
-    
-    int textureID;
-    
-    float width;
-    float height;
-    float speed;
-    
-    float dir_x;
-    float dir_y;
-    
-};
-
-//global vars of death
-Entity ball, paddle_left, paddle_right;
-Entity top_bumper, bottom_bumper, net;
-float screen_red = 0.0f;
-float screen_blue = 0.0f;
-float screen_green = 0.0f;
-bool screen_fade = false;
-const Uint8* keys = SDL_GetKeyboardState(nullptr);
 
 void Setup() {
     SDL_Init(SDL_INIT_VIDEO);
@@ -126,7 +70,7 @@ void SetValues(bool right_won = true) {
 
 bool ProcessEvents() {
 	SDL_Event event;
-    
+
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
             return false;
@@ -134,7 +78,6 @@ bool ProcessEvents() {
     }
     
     //PADDLE MOVEMENT
-    
     if (keys[SDL_SCANCODE_W])
         paddle_left.dir_y = 1.0f;
     else if (keys[SDL_SCANCODE_S])
@@ -149,49 +92,41 @@ bool ProcessEvents() {
     else
         paddle_right.dir_y = 0.0f;
     
-    
-    //COLLISIONS... ugh collisions...
-    
-    //ball collide with right paddle
+    //COLLISIONS
+    //ball collide with right paddle side
     if (((ball.x + ball.width * 0.5) > (paddle_right.x - paddle_right.width * 0.5)) &&
-        ((ball.x + ball.width * 0.5) < (paddle_right.x)) && //for top hit check if collide before x on paddle far side
         ((ball.y + ball.height * 0.5) > (paddle_right.y - paddle_right.height * 0.5)) &&
         ((ball.y - ball.height * 0.5) < (paddle_right.y + paddle_right.height * 0.5))) {
         ball.x = (paddle_right.x - paddle_right.width * 0.5) - (ball.width * 0.5);
         ball.dir_x = -ball.dir_x;
-        float speed = (ball.y - paddle_right.y) / (paddle_right.height * 0.5);
-        ball.dir_y = speed;
+        float rebound_coeff = (ball.y - paddle_right.y) / (paddle_right.height * 0.5);
+        ball.dir_y = rebound_coeff * ball.max_speed;
         screen_red = float(rand() % 10) / 10;
         screen_green = float(rand() % 10) / 10;
         screen_blue = float(rand() % 10) / 10;
     }
-    
-    //ball collide with left paddle
+    //ball collide with left paddle side
     if (((ball.x - ball.width * 0.5) < (paddle_left.x + paddle_left.width * 0.5)) &&
-        ((ball.x - ball.width * 0.5) > (paddle_left.x)) &&
         ((ball.y + ball.height * 0.5) > (paddle_left.y - paddle_left.height * 0.5)) &&
         ((ball.y - ball.height * 0.5) < (paddle_left.y + paddle_left.height * 0.5))) {
         ball.x = (paddle_left.x + paddle_left.width * 0.5) + (ball.width * 0.5);
         ball.dir_x = -ball.dir_x;
-        float speed = (ball.y - paddle_left.y) / (paddle_left.height * 0.5);
-        ball.dir_y = speed;
+        float rebound_coeff = (ball.y - paddle_left.y) / (paddle_left.height * 0.5);
+        ball.dir_y = rebound_coeff * ball.max_speed;
         screen_red = float(rand() % 10) / 10;
         screen_green = float(rand() % 10) / 10;
         screen_blue = float(rand() % 10) / 10;
     }
-    
     //ball collide with top bumper
     if ((ball.y + ball.height * 0.5) > (top_bumper.y - top_bumper.height * 0.5)) {
         ball.y = (top_bumper.y - top_bumper.height * 0.5) - (ball.height * 0.5);
         ball.dir_y = -ball.dir_y;
     }
-    
     //ball collide with bottom bumper
     if ((ball.y - ball.height * 0.5) < (bottom_bumper.y + bottom_bumper.height * 0.5)) {
         ball.y = (bottom_bumper.y + bottom_bumper.height * 0.5) + (ball.height * 0.5);
         ball.dir_y = -ball.dir_y;
     }
-    
     //right paddle collide with top bumper
     if ((paddle_right.y + paddle_right.height * 0.5) > (top_bumper.y - top_bumper.height * 0.5))
         paddle_right.y = (top_bumper.y - top_bumper.height * 0.5) - (paddle_right.height * 0.5);
@@ -221,7 +156,6 @@ bool ProcessEvents() {
         screen_blue = 1.0f;
         screen_fade = true;
     }
-    
     if (screen_fade) {
         screen_red -= 0.02;
         screen_green -= 0.02;
@@ -238,6 +172,7 @@ void Update(float elapsed) {
     paddle_right.y += paddle_right.dir_y * elapsed;
     ball.x += ball.dir_x * elapsed;
     ball.y += ball.dir_y * elapsed;
+    ball.max_speed = 1.5;
 }
 
 void Render() {
@@ -263,7 +198,7 @@ void Render() {
 }
 
 void Cleanup() {
-    // ???
+    // What cleaning happens here???
 }
 
 int main(int argc, char *argv[]) {

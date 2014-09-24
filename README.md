@@ -28,4 +28,4 @@ Assignment 2
 * Can use keyboard, mouse, or joystick
   * Keyboard functionality implemented (joystick soon)
 * Notes:
-  * Currently written without separate compilation
+  * Score not yet implemented
