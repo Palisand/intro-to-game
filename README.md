@@ -29,3 +29,4 @@ Assignment 2
   * Keyboard functionality implemented (joystick soon)
 * Notes:
   * Score not yet implemented
+  * Top/bottom paddle-ball collision to be changed

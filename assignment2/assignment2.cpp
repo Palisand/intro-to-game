@@ -1,5 +1,5 @@
 //
-//  pong.cpp
+//  assignment2.cpp
 //  NYUCodebase
 //
 //  Created by Panagis Alisandratos on 9/17/14.
@@ -198,7 +198,7 @@ void Render() {
 }
 
 void Cleanup() {
-    // What cleaning happens here???
+    // For texture clean up (will not be used in this assignment)
 }
 
 int main(int argc, char *argv[]) {
