@@ -208,6 +208,11 @@ int main(int argc, char *argv[])
         { -float(rand() % 2 + 10)/10, -float(rand() % 20 + 70)/100 },
     };
     
+    GLuint hand1 = LoadTexture("zombie_hands/zombie_hand_0000_Layer-4.png");
+    GLuint hand2 = LoadTexture("zombie_hands/zombie_hand_0001_Layer-3.png");
+    GLuint hand3 = LoadTexture("zombie_hands/zombie_hand_0002_Layer-2.png");
+    GLuint hand4 = LoadTexture("zombie_hands/zombie_hand_0003_Layer-1.png");
+    
 	while (!done) {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
@@ -222,14 +227,14 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT);
         
         //hands
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0000_Layer-4.png"), -0.2, hands_y[0][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0001_Layer-3.png"), -0.8, hands_y[1][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0002_Layer-2.png"), 0.4, hands_y[2][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0003_Layer-1.png"), 1.0, hands_y[3][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0000_Layer-4.png"), 1.2, hands_y[4][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0001_Layer-3.png"), 0.6, hands_y[5][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0002_Layer-2.png"), -0.6, hands_y[6][0], 0.5);
-        DrawSprite(LoadTexture("zombie_hands/zombie_hand_0003_Layer-1.png"), -1.0, hands_y[7][0], 0.5);
+        DrawSprite(hand1, -0.2, hands_y[0][0], 0.5);
+        DrawSprite(hand2, -0.8, hands_y[1][0], 0.5);
+        DrawSprite(hand3, 0.4, hands_y[2][0], 0.5);
+        DrawSprite(hand4, 1.0, hands_y[3][0], 0.5);
+        DrawSprite(hand1, 1.2, hands_y[4][0], 0.5);
+        DrawSprite(hand2, 0.6, hands_y[5][0], 0.5);
+        DrawSprite(hand3, -0.6, hands_y[6][0], 0.5);
+        DrawSprite(hand4, -1.0, hands_y[7][0], 0.5);
         
         //ground
         glLoadIdentity();
@@ -317,6 +322,8 @@ int main(int argc, char *argv[])
             bud_scale -= 0.05;
         else
             bud_scale = 1;
+        
+        glDisableClientState(GL_VERTEX_ARRAY);
         
 		SDL_GL_SwapWindow(displayWindow);
 	}

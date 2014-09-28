@@ -1,6 +1,6 @@
 //
 //  assignment2.cpp
-//  NYUCodebase
+//  This is Pong... Sorta
 //
 //  Created by Panagis Alisandratos on 9/17/14.
 //

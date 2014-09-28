@@ -1,6 +1,5 @@
 //
 //  entity.cpp
-//  NYUCodebase
 //
 //  Created by Panagis Alisandratos on 9/23/14.
 //
