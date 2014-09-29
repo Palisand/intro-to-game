@@ -30,3 +30,9 @@ Assignment 2
 * Notes:
   * Score not yet implemented
   * Top/bottom paddle-ball collision to be changed
+
+Assignment 3
+------------
+
+* Space Invaders
+* Not my best work...
