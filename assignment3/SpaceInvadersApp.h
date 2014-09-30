@@ -56,20 +56,19 @@ private:
     GLuint mainSpriteSheet;
     const char* fontSheetPath = "assets/fonts/pixel_font.png";
     GLuint fontSheetTexId;
+    float screen_pulsate;
+    float screen_red, screen_green, screen_blue;
     float title_red, title_green, title_blue;
     float enter_red, enter_green, enter_blue, enter_size;
     Entity* plr = new Entity(); //allocation on heap a bad idea?
     Entity* enemies = new Entity[MAX_ENEMIES];
+    int enemiesTotal;
     Entity* plrShots = new Entity[MAX_PLR_SHOTS]; //change to projectile
     int plrShotIndex;
-    float inc = 0.0f;
+    float inc;
     int score;
+    bool slow;
     float scoreSize = 0.1f;
-//    float plrSpriteIndex;
-//    Entity enemies[MAX_ENEMIES];
-//    Entity enemyShots[MAX_ENEMY_SHOTS];
-//    const char* spriteSheetPath;
-//    GLuint fontTexId;
 };
 
 #endif /* defined(__Assignment3__SpaceInvadersApp__) */

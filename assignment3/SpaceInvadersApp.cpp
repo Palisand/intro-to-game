@@ -26,6 +26,11 @@ SpaceInvadersApp::SpaceInvadersApp() { //constructor - setup all vars
 
     InitGameLevel();
     
+    inc = 0.0f;
+    
+    screen_red = 0.0f;
+    screen_green = 0.0f;
+    screen_blue = 0.0f;
     fontSheetTexId = LoadTexture(fontSheetPath);
     title_red = 1.0f;
     title_green = 1.0f;
@@ -39,10 +44,15 @@ SpaceInvadersApp::SpaceInvadersApp() { //constructor - setup all vars
 void SpaceInvadersApp::InitGameLevel() {
     
     score = 0;
+    enemiesTotal = MAX_ENEMIES;
+    slow = true;
+    
+    screen_pulsate = 0.0f;
     
     mainSpriteSheet = LoadTexture("assets/ms_pacman_spritesheet.png");
     plr->textureID = mainSpriteSheet;
     plr->speed = 1.5f;
+    plr->x = 0.0f;
     plr->y = -0.9f;
     plr->spriteIndex = 2;
     
@@ -65,7 +75,7 @@ void SpaceInvadersApp::InitGameLevel() {
         
         enemies[i].dir_y = -0.05f;
         enemies[i].dir_x = dir_x_switch ? float(rand() % 2 + 15) / 10 : -float(rand() % 2 + 15) / 10;
-        enemies[i].speed = 0.5f;
+        enemies[i].speed = 0.005f;
         
         enemies[i].x = enemy_x;
         enemies[i].y = enemy_y;
@@ -90,7 +100,7 @@ SpaceInvadersApp::~SpaceInvadersApp() {
 
 void SpaceInvadersApp::Init() {
     SDL_Init(SDL_INIT_VIDEO);
-    displayWindow = SDL_CreateWindow("Space Invaders: Ms. Pacman Vs Ghosts on Acid", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
+    displayWindow = SDL_CreateWindow("Space Invaders?", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
     
@@ -104,6 +114,7 @@ void SpaceInvadersApp::Init() {
  *************************************/
 
 void SpaceInvadersApp::Render() {
+    glClearColor(screen_red, screen_green, screen_blue, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
     switch(state) {
@@ -134,6 +145,15 @@ void SpaceInvadersApp::RenderGameLevel() {
     DrawText(fontSheetTexId, "SCORE: ", 0.1f, -0.02f, 1.0f, 1.0f, 1.0f, 1.0f, -1.25f, 0.9f);
     DrawText(fontSheetTexId, to_string(score), scoreSize, -0.02f, 1.0f, 1.0f, 1.0f, 1.0f, -0.75f, 0.9f);
     
+    //won
+    if (enemiesTotal == 0) {
+        DrawText(fontSheetTexId, "YOU WIN!", 0.2f, -0.01f, title_red, title_green, title_blue, 1.0f, -0.6f, 0.3f);
+    }
+
+    title_red = cos(inc/10 * PI / 180);
+    title_green = cos(inc/2 * PI / 180);
+    title_blue = cos(inc * PI / 180);
+    
     plr->DrawFromSpriteSheet(8, 8);
     
     for (int i = 0; i < MAX_ENEMIES; i++) {
@@ -148,8 +168,9 @@ void SpaceInvadersApp::RenderGameLevel() {
 
 void SpaceInvadersApp::RenderGameOver() {
     DrawText(fontSheetTexId, "GAME OVER", 0.2f, -0.01f, 1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 0.3f);
-    DrawText(fontSheetTexId, "Give it another go", 0.1f, -0.01f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f);
-    DrawText(fontSheetTexId, "(Press ENTER)", 0.1f, -0.01f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.2f);
+    DrawText(fontSheetTexId, "SCORE: " + to_string(score), 0.1f, -0.01f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, 0.1f);
+    DrawText(fontSheetTexId, "Give it another go", 0.1f, -0.01f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.2f);
+    DrawText(fontSheetTexId, "(Press ENTER)", 0.1f, -0.01f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.4f);
 }
 
 /*************************************
@@ -157,6 +178,8 @@ void SpaceInvadersApp::RenderGameOver() {
  *************************************/
 
 void SpaceInvadersApp::Update(float elapsed) {
+    
+    inc += 100;
     
     switch(state) {
         case STATE_TITLE_SCREEN:
@@ -192,7 +215,6 @@ void SpaceInvadersApp::UpdateTitleScreen(float elapsed) {
         enter_size = 0.2f;
     }
     
-    inc += 100;
     title_red = cos(inc/10 * PI / 180);
     title_green = cos(inc/2 * PI / 180);
     title_blue = cos(inc * PI / 180);
@@ -243,6 +265,14 @@ void SpaceInvadersApp::UpdateGameLevel(float elapsed) {
     for (int i = 0; i < MAX_ENEMIES; i++) {
         //should be calling Update method for Entity derived class Enemy, ain't nobody got time fo' dat
         
+        //initial speed boost
+        if (enemies[i].health < 2 && slow) {
+            for (int j = 0; j < MAX_ENEMIES; j++) {
+                enemies[j].speed = 0.5f;
+            }
+            slow = false;
+        }
+        
         enemies[i].Move(elapsed);
         enemies[i].Move(elapsed);
         
@@ -262,16 +292,23 @@ void SpaceInvadersApp::UpdateGameLevel(float elapsed) {
             enemies[i].dir_x = -enemies[i].dir_x;
         }
         
-        switch((int)enemies[i].health) {
-            case 0: //die
-                enemies[i].Kill();
-                break;
-            case 1: //panic
-                enemies[i].speed = 0.6f; //possibly use a base speed and speed = baseSpeed + ?;
-                enemies[i].animSpeed = 0.2f;
-                enemies[i].startSpriteIndex = 12;
-                enemies[i].maxSpriteIndex = 15;
-                break;
+        if (enemies[i].IsAlive()) {
+            switch((int)enemies[i].health) {
+                case 0: //die
+                    enemies[i].Kill();
+                    enemiesTotal--;
+                    break;
+                case 1: //panic
+                    enemies[i].speed = 0.6f; //possibly use a base speed and speed = baseSpeed + ?;
+                    enemies[i].animSpeed = 0.2f;
+                    enemies[i].startSpriteIndex = 12;
+                    enemies[i].maxSpriteIndex = 15;
+                    break;
+            }
+        }
+        
+        if (enemiesTotal == 1) {
+            enemies[i].speed = 1.0f;
         }
         
         //damage intake
@@ -281,10 +318,21 @@ void SpaceInvadersApp::UpdateGameLevel(float elapsed) {
                 plrShots[j].visible = false;
                 //score update
                 scoreSize = 0.2f;
-                score += 10;
+                if (enemies[i].health == 1) {
+                    score += 100 / lastFrameTicks;
+                }
+                else if (enemiesTotal == 1){
+                    score += 300 / lastFrameTicks;
+                }
+                else {
+                    score += 150 / lastFrameTicks;
+                }
+                
+                screen_pulsate = 10.0f;
+                
             }
         }
-
+        
         //game over
         if (enemies[i].y <= plr->y && enemies[i].IsAlive()) {
             //plr-death sequence
@@ -297,6 +345,19 @@ void SpaceInvadersApp::UpdateGameLevel(float elapsed) {
     }
     else {
         scoreSize = 0.1f;
+    }
+    
+    if (screen_pulsate || enemiesTotal == 0) {
+        screen_pulsate--;
+        screen_red = cos(inc/10 * PI / 180);
+        screen_green = cos(inc/2 * PI / 180);
+        screen_blue = cos(inc * PI / 180);
+    }
+    else {
+        screen_pulsate = 0;
+        screen_red = 0.0f;
+        screen_green = 0.0f;
+        screen_blue = 0.0f;
     }
     
 }
