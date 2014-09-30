@@ -1,40 +1,49 @@
 //
 //  Entity.h
-//
-//  Created by Panagis Alisandratos on 9/28/14.
+//  Assignment3
 //
 
-#ifndef __Entity__
-#define __Entity__
+#ifndef __Assignment3__Entity__
+#define __Assignment3__Entity__
 
 #include <SDL_opengl.h>
 
 class Entity {
 public:
-    Entity(bool visible = true);
     
-    void Draw() const;
-    void DrawFromSpriteSheet(int index, int spriteCountX, int spriteCountY) const;
+    //extended constructor
+    Entity(float height = 0.1, float width = 0.1, GLuint textureID = 0, float x = 0.0f, float y = 0.0f, float angle = 0.0f, bool visible = true, float x_scale = 1.0f, float y_scale = 1.0f);
     
+    void DrawFromSprite();
+    void DrawFromSpriteSheet(int spriteCountX, int spriteCountY);
+    
+    //conveniency methods
     void SetSize(float height, float width);
+    void Scale(float magnitude);
+    void Kill(); //based on visibility (change this later)
+    bool IsAlive(); //based on visibility (change this later)
+    void Move(float elapsed);
     
+    /* all attributes currently public for ease of use */
+    GLuint textureID;
+    float spriteIndex;
+    int startSpriteIndex;
+    int maxSpriteIndex;
+    float animSpeed;
+    float alpha;
+    bool visible;
     float x;
     float y;
     float x_scale;
     float y_scale;
-    float angle;
     float width;
     float height;
-    
-    int textureID;
-    
-    float speed;
-    float max_speed;
+    float angle;
     float dir_x;
     float dir_y;
-    
+    float speed;
+    float max_speed;
     float health;
-    bool visible;
 };
 
-#endif /* defined(__Entity__) */
+#endif /* defined(__Assignment3__Entity__) */

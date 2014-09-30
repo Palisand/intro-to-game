@@ -1,11 +1,10 @@
 //
 //  SpaceInvadersApp.h
-//
-//  Created by Panagis Alisandratos on 9/28/14.
+//  Assignment3
 //
 
-#ifndef __SpaceInvadersApp__
-#define __SpaceInvadersApp__
+#ifndef __Assignment3__SpaceInvadersApp__
+#define __Assignment3__SpaceInvadersApp__
 
 #include <SDL.h>
 #include <SDL_opengl.h>
@@ -23,7 +22,7 @@ public:
     ~SpaceInvadersApp();
     
     void Init();
-    void SetupGameLevel();
+    void InitGameLevel();
     bool UpdateAndRender();
     
     void Render();
@@ -37,10 +36,13 @@ public:
     void UpdateGameOver(float elapsed);
     
     //helper functions
-    void PlrShoot(); //should be a method inside a Entity derived Player class
-    bool PointCollision(Entity point, Entity obj); //where is the best place for this helper function?
-    GLuint LoadTexture(const char* image_path, GLenum image_format = GL_RGBA);
-    void DrawText(int fontTexture, std::string text, float size, float spacing, float r, float g, float b, float a);
+    void PlrShoot();
+    
+    bool PointCollision(Entity point, Entity obj);
+    
+    GLuint LoadTexture(const char* image_path, GLenum image_format = GL_BGRA, GLint texParam = GL_NEAREST);
+    
+    void DrawText(GLuint fontTexture, std::string text, float size, float spacing, float r, float g, float b, float a, float x, float y);
     
 private:
     
@@ -51,15 +53,23 @@ private:
     enum gameState { STATE_TITLE_SCREEN, STATE_GAME_LEVEL, STATE_GAME_OVER };
     int state;
     const Uint8* keys;
-    Entity plr;
+    GLuint mainSpriteSheet;
+    const char* fontSheetPath = "assets/fonts/pixel_font.png";
+    GLuint fontSheetTexId;
+    float title_red, title_green, title_blue;
+    float enter_red, enter_green, enter_blue, enter_size;
+    Entity* plr = new Entity(); //allocation on heap a bad idea?
+    Entity* enemies = new Entity[MAX_ENEMIES];
+    Entity* plrShots = new Entity[MAX_PLR_SHOTS]; //change to projectile
     int plrShotIndex;
-    float plrSpriteIndex;
-    Entity plrShots[MAX_PLR_SHOTS];
-    Entity enemies[MAX_ENEMIES];
-    Entity enemyShots[MAX_ENEMY_SHOTS];
-    const char* spriteSheetPath;
-    GLuint fontTexId;
+    float inc = 0.0f;
+    int score;
+    float scoreSize = 0.1f;
+//    float plrSpriteIndex;
+//    Entity enemies[MAX_ENEMIES];
+//    Entity enemyShots[MAX_ENEMY_SHOTS];
+//    const char* spriteSheetPath;
+//    GLuint fontTexId;
 };
 
-
-#endif /* defined(__SpaceInvadersApp__) */
+#endif /* defined(__Assignment3__SpaceInvadersApp__) */
