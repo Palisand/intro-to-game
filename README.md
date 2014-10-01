@@ -34,5 +34,13 @@ Assignment 2
 Assignment 3
 ------------
 
-* Space Invaders
-* Not my best work...
+* Make Space Invaders
+* Must have 3 States
+  * TITLE SCREEN
+  * GAME (called GameLevel in code)
+  * GAME OVER
+* Must keep and display score
+* Must use sprite sheets
+* Organized code (well, somewhat organized)
+* Notes:
+  * DO NOT PLAY if you are prone to epileptic attacks
