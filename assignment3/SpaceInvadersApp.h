@@ -69,6 +69,7 @@ private:
     int score;
     bool slow;
     float scoreSize = 0.1f;
+    float scoreDamper;
 };
 
 #endif /* defined(__Assignment3__SpaceInvadersApp__) */

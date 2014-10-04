@@ -43,7 +43,9 @@ SpaceInvadersApp::SpaceInvadersApp() { //constructor - setup all vars
 
 void SpaceInvadersApp::InitGameLevel() {
     
+
     score = 0;
+    scoreDamper = 0.0f;
     enemiesTotal = MAX_ENEMIES;
     slow = true;
     
@@ -311,6 +313,8 @@ void SpaceInvadersApp::UpdateGameLevel(float elapsed) {
             enemies[i].speed = 1.0f;
         }
         
+        scoreDamper += 0.001f;
+        
         //damage intake
         for (int j = 0; j < MAX_PLR_SHOTS; j++) {
             if ( plrShots[j].visible && enemies[i].IsAlive() && PointCollision(plrShots[j], enemies[i]) ) {
@@ -319,13 +323,13 @@ void SpaceInvadersApp::UpdateGameLevel(float elapsed) {
                 //score update
                 scoreSize = 0.2f;
                 if (enemies[i].health == 1) {
-                    score += 100 / lastFrameTicks;
+                    score += 100 / scoreDamper;
                 }
                 else if (enemiesTotal == 1){
-                    score += 300 / lastFrameTicks;
+                    score += 300 / scoreDamper;
                 }
                 else {
-                    score += 150 / lastFrameTicks;
+                    score += 150 / scoreDamper;
                 }
                 
                 screen_pulsate = 10.0f;
