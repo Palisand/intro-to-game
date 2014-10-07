@@ -44,3 +44,13 @@ Assignment 3
 * Organized code (well, somewhat organized)
 * Notes:
   * DO NOT PLAY if you are prone to epileptic attacks
+
+Assignment 4
+------------
+* Make a single screen platformer
+* Use velocity, acceleration, friction, and gravity
+* Use fixed time step
+* Player must be able to jump only when standing on ground [UP_ARROW or W]
+  * SPACEBAR will, however, allow you to break this rule and jump in midair
+* Player collects items
+* Uses unanimated graphics
