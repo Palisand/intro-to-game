@@ -54,3 +54,14 @@ Assignment 4
   * SPACEBAR will, however, allow you to break this rule and jump in midair
 * Player collects items
 * Uses unanimated graphics
+
+Assignment 5 [NOT COMPLETED]
+------------
+* Glitches
+  * SidescrollerApp::Render()
+    * Seemingly random flickering of tiles
+    * No translation = complete insanity
+
+Assignment 6 [NOT COMPLETED]
+------------
+* Incorporate sound in Assignment 5
