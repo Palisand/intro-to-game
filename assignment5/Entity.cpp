@@ -20,9 +20,10 @@ void Entity::Update(float elapsed) {
 
 void Entity::Render() {
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    glPushMatrix();
     glTranslatef(x, y, 0.0f);
     sprite.Draw(width, height);
+    glPopMatrix();
 }
 
 bool Entity::CollidesWith(Entity* entity) {

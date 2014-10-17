@@ -13,6 +13,7 @@
 #include <sstream>
 using namespace std;
 
+
 SidescrollerApp::SidescrollerApp() {
     Init();
     done = false;
@@ -36,7 +37,8 @@ void SidescrollerApp::Init() {
     
     glViewport(0, 0, 800, 600);
     glMatrixMode(GL_PROJECTION);
-    glOrtho(-1.33, 1.33, -1.0, 1.0, -1.0, 1.0);
+//    glOrtho(-1.33, 1.33, -1.0, 1.0, -1.0, 1.0);
+    glOrtho(0.0, 2.66, -2.0, 0.0, -1.0, 1.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -44,7 +46,7 @@ void SidescrollerApp::Init() {
 void SidescrollerApp::BuildLevel() {
     
     //PLAYER
-    GLuint plrSpriteTexture = util.LoadTexture("assets/characters_1.png");
+    GLuint plrSpriteTexture = util.LoadTexture("assets/characters_no_shadow.png");
     plr.sprite = SheetSprite(plrSpriteTexture, 34, 12, 8);
     plr.x = 0.0f;
     plr.y = 0.0f;
@@ -56,8 +58,8 @@ void SidescrollerApp::BuildLevel() {
     plr.velocity_y = 0.0f;
     plr.acceleration_x = 0.0f;
     plr.acceleration_y = 0.0f;
-    plr.friction_x = 5.0f;
-    plr.friction_y = 5.0f;
+    plr.friction_x = 7.0f;
+    plr.friction_y = 2.0f;
     entities.push_back(&plr);
 
     //TILES
@@ -78,24 +80,58 @@ void SidescrollerApp::BuildLevel() {
         else if (line == "[Object Layer 1]") {
             readEntityData(infile);
         }
-        
     }
 }
 
 
 void SidescrollerApp::Render() {
     
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    
+    float translateX = -plr.x + 1.33;
+    float translateY = -plr.y - 1;
+    
+    //how did you use 0.0 instead of glOrtho values?!
+//    if (translateY > 1.0) {
+//        translateY = 1.0;
+//    }
+//    
+//    if (translateX > -1.33) {
+//        translateX = -1.33;
+//    }
+//    
+//    if (translateX < -tileWidth * (mapWidth/2) - 1.87) {
+//        translateX = -tileWidth * (mapWidth/2) - 1.87;
+//    }
+    
+    if (translateY > 0.0) {
+        translateY = 0.0;
+    }
+    if (translateX > 0.0) {
+        translateX = 0.0;
+    }
+    if (translateX < -tileWidth * (mapWidth/2) - 0.66) {
+        translateX = -tileWidth * (mapWidth/2) - 0.66;
+    }
+
+    glTranslatef(translateX, translateY, 0.0f);
+    
+    RenderLevel();
     for (size_t i = 0; i < entities.size(); i++) {
         entities[i]->Render();
     }
     
-    
+    SDL_GL_SwapWindow(displayWindow);
+}
+
+
+void SidescrollerApp::RenderLevel() {
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glTranslatef(-tileWidth * mapWidth/2, tileHeight * mapHeight/2, 0.0f);
+    glPushMatrix();
+    //    glTranslatef(-tileWidth * mapWidth/2, tileHeight * mapHeight/2, 0.0f);
     
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, tilesTextureId);
@@ -136,11 +172,11 @@ void SidescrollerApp::Render() {
     
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    glDrawArrays(GL_QUADS, 0, mapHeight * mapWidth * 4.0f);
+    
+    glDrawArrays(GL_QUADS, 0, (GLsizei)vertexData.size()/2);
     glDisable(GL_TEXTURE_2D);
     
-    SDL_GL_SwapWindow(displayWindow);
+    glPopMatrix();
 }
 
 
@@ -152,8 +188,61 @@ void SidescrollerApp::Update(float elapsed) {
         if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
             done = true;
         }
+        else if (event.type == SDL_KEYDOWN) {
+            if (!event.key.repeat) {
+                if (event.key.keysym.scancode == SDL_SCANCODE_W && plr.collidedBottom == true) {
+                    plr.velocity_y += 2.0f;
+                }
+                if ((event.key.keysym.scancode == SDL_SCANCODE_D || event.key.keysym.scancode == SDL_SCANCODE_A) && plr.collidedBottom) {
+                    plr.sprite.index = 35;
+                }
+            }
+        }
     }
     
+    if (keys[SDL_SCANCODE_D] && !keys[SDL_SCANCODE_A]) {
+        plr.acceleration_x = 5.0f;
+        
+        if (plr.collidedBottom) {
+            plr.sprite.index += 0.2f; //call animate() specific to player? !!!
+            if (plr.sprite.index > 36) {
+                plr.sprite.index -= 3;
+            }
+        }
+        else {
+            plr.sprite.index = 35;
+        }
+        
+        if (plr.sprite.x_scale < 0) {
+            plr.sprite.FlipX();
+        }
+    }
+    else if (keys[SDL_SCANCODE_A] && !keys[SDL_SCANCODE_D]) {
+        plr.acceleration_x = -5.0f;
+        
+        if (plr.collidedBottom) {
+            plr.sprite.index += 0.2f;
+            if (plr.sprite.index > 36) {
+                plr.sprite.index -= 3;
+            }
+        }
+        else {
+            plr.sprite.index = 35;
+        }
+        
+        if (plr.sprite.x_scale > 0) {
+            plr.sprite.FlipX();
+        }
+    }
+    else {
+        plr.acceleration_x = 0.0f;
+        if (plr.collidedBottom) {
+            plr.sprite.index = 34;
+        }
+        else {
+            plr.sprite.index = 35;
+        }
+    }
 }
 
 
@@ -279,8 +368,7 @@ bool SidescrollerApp::readLayerData(std::ifstream& stream) {
                     unsigned char val = (unsigned char)atoi(tile.c_str());
                     if (val > 0) {
                         //flare map file tiles are indexed from 1 (not 0)
-                        levelData[y][x] = val; //- 1; ommitted because my tile layer did not have its first tile empty
-                        //(see -1 implemented in Render() and the lack of + 1 to grid coordinate in checkPointCollision..())
+                        levelData[y][x] = val; //- 1; ommitted because my tile layer did not have its first tile empty (see -1 implemented in Render()
                     }
                     else {
                         levelData[y][x] = 0;
@@ -317,11 +405,11 @@ bool SidescrollerApp::readEntityData(std::ifstream& stream) {
             getline(lineStream, xPosition, ',');
             getline(lineStream, yPosition, ',');
             
-            float placeX = atoi(xPosition.c_str()) / 16 * tileWidth;
-            float placeY = atoi(yPosition.c_str()) / 16 * -tileHeight; //-TILE_SIZE why? because tileHeight should be pixels (size is 0.1);
-
-//            placeEntity(type, placeX, placeY);
-            placeEntity(type, -1.2, 0); //test position
+            float placeX = atoi(xPosition.c_str()) / 32 * tileWidth; //32 should be tileWidth/ tileHeight (get from readData, and replace others with TILE_SIZE)
+            float placeY = atoi(yPosition.c_str()) / 32 * -tileHeight; //-TILE_SIZE why? because tileHeight should be pixels (size is 0.1);
+            
+            cout << placeX << ' ' << placeY;
+            placeEntity(type, placeX, placeY);
         }
     }
     return true;
@@ -336,9 +424,34 @@ void SidescrollerApp::placeEntity(string type, float x, float y) {
 }
 
 
+bool SidescrollerApp::isSolid(unsigned char tile) {
+    switch (tile) {
+        case 1:
+        case 2:
+        case 3:
+        case 5:
+        case 9:
+        case 10:
+        case 11:
+        case 13:
+        case 17:
+        case 18:
+        case 19:
+        case 21:
+            return true;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
+
 void SidescrollerApp::worldToTileCoordinates(float worldX, float worldY, int* gridX, int* gridY) {
-    *gridX = (int)((worldX + (tileWidth * mapWidth/2)) / tileWidth); //WORLD_OFFSET_X = tileWidth * mapWidth/2
-    *gridY = (int)((-worldY + (tileHeight * mapHeight/2)) / tileHeight); //WORLD_OFFSET_Y = tileHeight * mapHeight/2
+//    *gridX = (int)((worldX + (tileWidth * mapWidth/2)) / tileWidth); //WORLD_OFFSET_X = tileWidth * mapWidth/2
+//    *gridY = (int)((-worldY + (tileHeight * mapHeight/2)) / tileHeight); //WORLD_OFFSET_Y = tileHeight * mapHeight/2
+    *gridX = (int)(worldX / tileWidth);
+    *gridY = (int)(-worldY / tileHeight);
 }
 
 
@@ -350,10 +463,10 @@ float SidescrollerApp::checkPointCollisionX(float x, float y) {
         return 0.0f;
     }
     
-//    if (levelData[gridY][gridX]) { //isSolid(levelData[gridY][gridX]))
-        float xCoordinate = ((gridX + 1) * tileWidth) - (tileWidth * mapWidth/2);
+    if (isSolid(levelData[gridY][gridX])) {
+        float xCoordinate = (gridX + 1) * tileWidth; //((gridX + 1) * tileWidth) - (tileWidth * mapWidth/2);
         return xCoordinate - x;
-//    }
+    }
     
     return 0.0f;
 }
@@ -367,10 +480,8 @@ float SidescrollerApp::checkPointCollisionY(float x, float y) {
         return 0.0f;
     }
     
-    if ((int)levelData[gridY][gridX]) { //isSolid(levelData[gridY][gridX]))
-        float yCoordinate = ((gridY) * tileHeight) - (tileHeight * mapHeight/2);//for no translation: (gridY * tileHeight); //TILE_SIZE 0.1f
-        cout << yCoordinate << endl;
-        cout << y << endl;
+    if (isSolid(levelData[gridY][gridX])) {
+        float yCoordinate = gridY * tileHeight;//((gridY) * tileHeight) - (tileHeight * mapHeight/2);//for no translation: (gridY * tileHeight); //TILE_SIZE 0.1f
         return -y - yCoordinate;
     }
     
@@ -383,7 +494,7 @@ void SidescrollerApp::handleCollisionX(Entity* entity) {
     //left
     float penetration = checkPointCollisionX(entity->x - (entity->width * 0.5), entity->y);
     if (penetration != 0.0f) {
-        entity->x += penetration;
+        entity->x += penetration/10; // divide by constant to prevent x-collision abruptness COLLISION_DAMPER
         entity->velocity_x = 0.0f;
         entity->collidedLeft = true;
     }
@@ -391,7 +502,7 @@ void SidescrollerApp::handleCollisionX(Entity* entity) {
     //right
     penetration = checkPointCollisionX(entity->x + (entity->width * 0.5), entity->y);
     if (penetration != 0.0f) {
-        entity->x += penetration - tileWidth;
+        entity->x += (penetration - tileWidth)/10;
         entity->velocity_x = 0.0f;
         entity->collidedRight = true;
     }
@@ -411,7 +522,7 @@ void SidescrollerApp::handleCollisionY(Entity* entity) {
     //top
     penetration = checkPointCollisionY(entity->x, (entity->y + entity->height * 0.5));
     if (penetration != 0.0f) {
-        entity->y += penetration - tileHeight;
+        entity->y += (penetration - tileHeight) / 10;
         entity->velocity_y = 0.0f;
         entity->collidedTop = true;
     }

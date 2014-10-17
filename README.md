@@ -26,10 +26,10 @@ Assignment 2
 * Use images or basic shapes
   * Basic shapes, just like original
 * Can use keyboard, mouse, or joystick
-  * Keyboard functionality implemented (joystick soon)
+  * Keyboard functionality implemented
 * Notes:
-  * Score not yet implemented
-  * Top/bottom paddle-ball collision to be changed
+  * Score not implemented
+  * Top/bottom paddle-ball collision to be changed if necessary
 
 Assignment 3
 ------------
@@ -55,12 +55,12 @@ Assignment 4
 * Player collects items
 * Uses unanimated graphics
 
-Assignment 5 [NOT COMPLETED]
+Assignment 5
 ------------
-* Glitches
-  * SidescrollerApp::Render()
-    * Seemingly random flickering of tiles
-    * No translation = complete insanity
+* Make a simple scrolling sidescroller ~~or topdown~~ game demo
+* Use a tilemap
+* Implement scrolling
+* Load level from a file
 
 Assignment 6 [NOT COMPLETED]
 ------------

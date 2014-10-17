@@ -11,7 +11,7 @@
 #include <vector>
 #include <fstream>
 
-#define GRAVITY -9
+#define GRAVITY -3
 
 class SidescrollerApp {
 public:
@@ -23,6 +23,7 @@ public:
     bool UpdateAndRender();
     
     void Render();
+    void RenderLevel();
     void Update(float elapsed);
     void FixedUpdate();
     
@@ -31,6 +32,7 @@ public:
     bool readLayerData(std::ifstream& stream);
     bool readEntityData(std::ifstream& stream);
     void placeEntity(std::string type, float placeX, float placeY);
+    bool isSolid(unsigned char tile);
     
     //collision related
     void worldToTileCoordinates(float worldX, float worldY, int* gridX, int* gridY);
