@@ -62,6 +62,14 @@ Assignment 5
 * Implement scrolling
 * Load level from a file
 
-Assignment 6 [NOT COMPLETED]
+Assignment 6 
 ------------
-* Incorporate sound in Assignment 5
+(To Use: Copy contents into assigment 5 directory)
+* Use SDL_mixer to implement sound on to Assignment 5
+* One music track
+  * Diogenes in Hell 04 - Potential Space (mp3)
+* Two sound effects
+  * step.wav
+  * jump.wav
+* Known Glitch:
+  * Emits an initial short burst of static when executed
