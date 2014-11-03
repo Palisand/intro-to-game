@@ -73,3 +73,11 @@ Assignment 6
   * jump.wav
 * Known Glitch:
   * Emits an initial short burst of static when executed
+
+Assignment 7
+------------
+* Make simple asteroids
+* Use transformation matrices
+* Use non-axis aligned collisions
+* Notes:
+  * Expect to see a bunch of white rectangles, with a small one in the middle
