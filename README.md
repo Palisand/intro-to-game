@@ -81,3 +81,11 @@ Assignment 7
 * Use non-axis aligned collisions
 * Notes:
   * Expect to see a bunch of white rectangles, with a small one in the middle
+
+Assignment 8
+------------
+* Add effects to an existing game (Pong)
+* Use at least 3 different effects
+  * Screen shake on ball-paddle collision
+  * Constant screen translation based on perlin noise
+  * ParticleEmitter at center of ball
