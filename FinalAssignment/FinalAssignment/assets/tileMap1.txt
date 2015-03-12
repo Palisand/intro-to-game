@@ -1,0 +1,403 @@
+[header]
+width=32
+height=24
+tilewidth=16
+tileheight=16
+
+[tilesets]
+tileset=../../../../../../PyxelEdit/finalAssignment1.png,16,16,0,0
+
+[layer]
+type=Tile Layer 1
+data=
+173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,
+173,175,0,0,0,0,0,0,0,0,0,0,0,0,0,173,173,0,0,0,0,0,0,0,0,0,0,0,0,0,174,173,
+173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,
+173,0,0,0,0,0,0,0,0,0,0,0,171,173,173,173,173,173,173,172,0,0,0,0,0,0,0,0,0,0,0,173,
+173,126,0,0,0,0,0,0,0,0,0,0,0,0,0,173,173,0,0,0,0,0,0,0,0,0,0,0,0,0,126,173,
+173,126,126,0,126,0,0,0,0,0,0,0,0,0,0,174,175,0,0,0,0,0,0,0,0,0,0,126,0,126,126,173,
+173,173,173,173,173,159,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,158,173,173,173,173,173,
+173,152,154,154,153,176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,176,152,154,154,153,173,
+173,155,167,167,167,153,0,0,0,0,0,0,0,160,0,0,0,0,160,0,0,0,0,0,0,0,152,167,167,167,156,173,
+173,155,167,167,167,156,0,0,0,0,171,173,173,175,0,0,0,0,174,173,173,172,0,0,0,0,155,167,167,167,156,173,
+173,168,170,167,167,156,0,0,0,0,152,154,154,153,126,126,126,126,152,154,154,153,0,0,0,0,155,167,167,170,169,173,
+173,173,159,155,167,156,0,0,0,0,155,167,167,156,126,126,126,126,155,167,167,156,0,0,0,0,155,167,156,158,173,173,
+173,173,175,155,167,156,0,0,0,0,155,167,167,156,126,126,126,126,155,167,167,156,0,0,0,0,155,167,156,174,173,173,
+173,152,154,167,167,156,0,0,0,0,168,170,170,169,126,126,126,126,168,170,170,169,0,0,0,0,155,167,167,154,153,173,
+173,155,167,167,167,156,0,0,0,0,171,173,173,173,173,173,173,173,173,173,173,172,0,0,0,0,155,167,167,167,156,173,
+173,155,167,167,167,169,0,0,0,0,0,0,0,0,0,173,173,0,0,0,0,0,0,0,0,0,168,167,167,167,156,173,
+173,168,170,170,169,160,0,0,0,0,0,0,0,0,0,173,173,0,0,0,0,0,0,0,0,0,160,168,170,170,169,173,
+173,173,173,173,173,175,0,0,0,0,0,0,0,0,0,174,175,0,0,0,0,0,0,0,0,0,174,173,173,173,173,173,
+173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,
+173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,
+173,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,126,173,
+173,126,126,126,0,0,0,0,0,0,0,0,0,171,173,173,173,173,172,0,0,0,0,0,0,0,0,0,126,126,126,173,
+173,159,126,126,126,0,0,158,173,159,0,0,0,126,126,148,149,126,126,0,0,0,158,173,159,0,0,126,126,126,158,173,
+173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173,173
+
+[layer]
+type=Tile Layer 2
+data=
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+[layer]
+type=Tile Layer 3
+data=
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=160,144,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=336,144,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=256,336,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=240,336,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=16,176,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=16,272,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=480,272,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=480,176,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=448,96,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=48,96,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=208,128,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=288,128,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=368,352,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=128,352,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=80,96,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=80,256,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=160,224,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=224,48,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=160,368,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=192,144,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=272,48,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=304,144,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=336,224,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=416,256,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=416,96,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=336,368,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=192,48,0,0
+
+[Object Layer 1H]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=304,48,0,0
+
+[Object Layer 1H]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=96,368,0,0
+
+[Object Layer 1H]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=400,368,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=160,144,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=336,144,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=256,336,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=240,336,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=16,176,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=16,272,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=480,272,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=480,176,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=448,96,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=48,96,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=208,128,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=288,128,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=368,352,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=128,352,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=80,96,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=80,256,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=160,224,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=208,48,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=160,368,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=192,144,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=288,48,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=304,144,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=336,224,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=416,256,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=416,96,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=336,368,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=192,48,0,0
+
+[Object Layer 1C]
+# AmmoSpawnPoint
+type=AmmoSpawnPoint
+location=304,48,0,0
+
+[Object Layer 1C]
+# RedSpawnPoint
+type=RedSpawnPoint
+location=96,368,0,0
+
+[Object Layer 1C]
+# BlueSpawnPoint
+type=BlueSpawnPoint
+location=400,368,0,0
+
+[Object Layer 1C]
+# FlagSpawnPoint1
+type=FlagSpawnPoint1
+location=224,48,0,0
+
+[Object Layer 1C]
+# FlagSpawnPoint2
+type=FlagSpawnPoint2
+location=272,48,0,0
+
