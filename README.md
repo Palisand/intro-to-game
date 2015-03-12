@@ -5,7 +5,6 @@ CS3113 Introduction to Game Programming Repository
 
 Assignment 1
 ------------
-
 * Create a simple 2D scene using textured and untextured polygons
 * You can use any images you want, but feel free to use the assets in the class github repo
 * At least one element must be animated
@@ -19,7 +18,6 @@ Assignment 1
 
 Assignment 2
 ------------
-
 * Make PONG!
 * You do not need to keep score (we have not learned text output yet)
 * You must detect player wins
@@ -33,7 +31,6 @@ Assignment 2
 
 Assignment 3
 ------------
-
 * Make Space Invaders
 * Must have 3 States
   * TITLE SCREEN
@@ -89,3 +86,12 @@ Assignment 8
   * Screen shake on ball-paddle collision
   * Constant screen translation based on perlin noise
   * ParticleEmitter at center of ball
+  
+Final Assignment
+----------------
+A single screen local multiplayer platformer where two players collect rounds and fire at eachother in an attempt to collect dropped heads. In addition to the stated 'Head Hunter' mode, capture-the-flag and king of the hill game modes have also been provided.
+
+* Originally a private repository
+  * Is now public here and in https://github.com/jmg802/CS3113-FinalGame
+  * Check link provided above for actual commit and project development histories
+* Most music has not been included to prevent copyright / legal issues.
