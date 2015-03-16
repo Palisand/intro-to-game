@@ -3,6 +3,10 @@ intro-to-game
 
 CS3113 Introduction to Game Programming Repository
 
+**IT HAS COME TO MY ATTENTION THAT SOME OF THIS CODE IS BEING RE-USED BY STUDENTS CURRENTLY ATTENDING _INTRODUCTION TO GAME PROGRAMMING_.**
+
+**PLEASE DO NOT REFER TO THIS CODE. THANK YOU.**
+
 Assignment 1
 ------------
 * Create a simple 2D scene using textured and untextured polygons
@@ -91,7 +95,4 @@ Final Assignment
 ----------------
 A single screen local multiplayer platformer where two players collect rounds and fire at eachother in an attempt to collect dropped heads. In addition to the stated 'Head Hunter' mode, capture-the-flag and king of the hill game modes have also been provided.
 
-* Originally a private repository
-  * Is now public here and in https://github.com/jmg802/CS3113-FinalGame
-  * Check link provided above for actual commit and project development histories
 * Most music has not been included to prevent copyright / legal issues.
